@@ -18,6 +18,12 @@ export default {
       body: JSON.stringify(house)
     })
       .then(response => response.json());
+  },
+  getHouseById(id) {
+    return fetch(`http://localhost:3000/api/houses/${id}`, {
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json());
   }
 };
   

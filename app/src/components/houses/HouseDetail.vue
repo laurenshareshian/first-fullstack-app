@@ -19,20 +19,14 @@ import Loader from './Loader';
 export default {
   data() {
     return { 
-      houses: null,
       house: null
     };
   },
+  
   created() {
-    api.getHouses()
-      .then(houses => {
-        this.houses = houses;
-        for(let i = 0; i < this.houses.length; i++){
-          let house = this.houses[i];
-          if(house.id === parseInt(this.$route.params.id)){
-            this.house = house;
-          }
-        }
+    api.getHouseById(this.$route.params.id)
+      .then(house => {
+        this.house = house;
       });
   },
   components: {
