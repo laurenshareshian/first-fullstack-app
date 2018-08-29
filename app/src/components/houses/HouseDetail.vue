@@ -29,7 +29,7 @@ export default {
         this.houses = houses;
         for(let i = 0; i < this.houses.length; i++){
           let house = this.houses[i];
-          if(house.property_id === this.$route.params.property_id){
+          if(house.id === parseInt(this.$route.params.id)){
             this.house = house;
           }
         }
