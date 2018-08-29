@@ -24,9 +24,7 @@ export default {
 </script>
 
 <style scoped>
-
 footer p {
   text-align: center !important;
 }
-
 </style>
