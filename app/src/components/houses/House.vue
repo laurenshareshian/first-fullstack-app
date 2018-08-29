@@ -14,7 +14,7 @@ export default {
   props: ['house'],
   computed: {
     shortenedAddress() {
-      return this.house.address.toLocaleString().substring(0, 30);
+      return this.house.address.substring(0, 30);
     },
     price() {
       return this.house.sale_price > 600000 ? 'expensive!' : '';
