@@ -1,67 +1,84 @@
-// require the express module (installed via `npm i express`)
+// basic express app
 const express = require('express');
-
-// make an express app. no "new" keyword ¯\_(ツ)_/¯
 const app = express();
 
-/* SERVER SETUP */
-
-// import morgan for logging
+// logging
 const morgan = require('morgan');
 app.use(morgan('dev'));
 
-// import cors "middleware" to enable our server to do CORS
+// middleware (cors and read json body)
 const cors = require('cors');
-// register it
 app.use(cors());
-
-// register express "middleware" for converting incoming
-// request body to deserialized request.body property
 app.use(express.json());
 
-/* TEMP DATABASE SOLUTION */
+// connect to the database
+const pg = require('pg');
+const Client = pg.Client;
+const databaseUrl = 'postgres://localhost:5432/portland_houses';
+const client = new Client(databaseUrl);
+client.connect();
 
-// temp solution to updating data...
-const fs = require('fs');
-// fs file paths are relative to pwd (cwd) aka where you started node
-// path to data file:
-const dataPath = 'data/houses.json';
-
-function readData() {
-  // convenient method for reading file.
-  // DON'T ever use in production
-  const raw = fs.readFileSync(dataPath);
-  // make into js array with house objects
-  const data = JSON.parse(raw);
-
-  return data;
-}
-
-/* ROUTES */
-
-// setup a "route":
-// 1) HTTP METHOD, i.e. app.get === for GET requests
-// 2) PATH, i.e. '/api/houses` === the requested path
+// routes
 app.get('/api/houses', (req, res) => {
-  const data = readData();
-  // send back the data:
-  res.send(data);
+  client.query(`
+    SELECT 
+      id,
+      address, 
+      property_id, 
+      owner, 
+      square_feet, 
+      sale_date, 
+      sale_price, 
+      year_built
+    FROM houses;
+  `)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => console.log(err));
 });
 
-// app.<method>(<path>, handler)
+app.get('/api/houses/:id', (req, res) => {
+  client.query(`
+    SELECT 
+      id,
+      address, 
+      property_id, 
+      owner, 
+      square_feet, 
+      sale_date, 
+      sale_price, 
+      year_built
+    FROM houses
+    WHERE id = $1;
+  `,
+  [req.params.id]
+  )
+    .then(result => {
+      res.send(result.rows[0]);
+    })
+    .catch(err => console.log(err));
+  
+});
+
 app.post('/api/houses', (req, res) => {
-  const data = readData();
-  data.push(req.body);
-  // save file
-  fs.writeFileSync(dataPath, JSON.stringify(data));
+  console.log('posting');
+  const body = req.body;
 
-  res.send(req.body);
+  client.query(`
+    INSERT INTO houses (address, property_id, owner, square_feet, sale_date, sale_price, year_built)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    RETURNING *;
+  `,
+  [body.address, body.property_id, body.owner, body.square_feet, body.sale_date, body.sale_price, body.year_built]
+  )
+    .then(result => {
+      // we always get rows back, in this case we just want first one.
+      res.send(result.rows[0]);
+    })
+    .catch(err => console.log(err));
 });
 
-/* RUN THE SERVER */
-
-// set the PORT on which to listen
-const PORT = 3000;
 
 // start "listening" (run) the app (server)
-app.listen(PORT, () => console.log('app running...'));
+app.listen(3000, () => console.log('app running...'));

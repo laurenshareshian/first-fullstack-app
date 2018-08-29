@@ -7,7 +7,10 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "exit 0",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "create-tables": "node scripts/create-tables.js",
+    "drop-tables": "node scripts/drop-tables.js",
+    "recreate-tables": "npm run drop-tables && npm run create-tables"
   },
   "author": "Lauren Shareshian",
   "license": "ISC",
@@ -15,7 +18,8 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "i": "^0.3.6",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "pg": "^7.4.3"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
