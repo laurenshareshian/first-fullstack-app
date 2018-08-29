@@ -1,14 +1,11 @@
-<template id="house-template">
-  <li class="house-profile">
-    <h3>{{ house.address }}</h3>
-    <p>Sale Date: {{ house.sale_date }}</p>
-    <p>Square Feet: {{ house.square_feet }}</p>
-    <p>Year Built: {{ house.year_built }}</p>
-    <p>Owner: {{ house.owner }}</p>
-    <p>Sale Price: {{ house.sale_price }}</p>
-    <p class="sale-price">
-      <span class="size">(<em>{{ size }}</em> house)</span>
-    </p>
+<template>
+  <li>
+    <router-link :to="`/houses/${house.property_id}`">
+    <div class="title-bg">
+      <h3>{{shortenedAddress}}</h3>
+      <p> {{price}} </p>
+    </div>
+    </router-link>
   </li>
 </template>
 
@@ -16,36 +13,46 @@
 export default {
   props: ['house'],
   computed: {
-    population() {
-      return this.house.population.toLocaleString();
+    shortenedAddress() {
+      return this.house.address.toLocaleString().substring(0, 30);
     },
-    size() {
-      return this.house.sale_price > 600000 ? 'an expensive' : 'a reasonably priced';
+    price() {
+      return this.house.sale_price > 600000 ? 'expensive!' : '';
     }
   }
 };
+
 </script>
-
 <style scoped>
-/* h3 {
-  margin: 40px 0 0;
-} */
-
-.house-profile { 
-  width: 240px;
-  background-color: white;
-  padding: 20px;
-  border: solid 15px black;
-  margin-right:15px;
+li {
+  list-style: none;
+  text-align: center;
+  position: relative;
+}
+h3{
+  font-family:'Playfair Display';
+  font-size:25px;
+  letter-spacing: 1px;
+  color:white;
+  margin-bottom:0;
+  text-transform: none;
+}
+p {
   margin-top: 15px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center !important;
+}
+.title-bg {
+  background: black;
+  color:white;
+  position: absolute;     
+  text-align: center;  
+  padding: 0px 20px 10px 20px;  
+  bottom: 0px; 
+  width: 100%;
 }
 
-button {
-  color:#100f14b0;
-  background: none;
-  border: none;
-  padding: 0;
-  margin:0;
-  font-size: 13px;
-}
+
 </style>

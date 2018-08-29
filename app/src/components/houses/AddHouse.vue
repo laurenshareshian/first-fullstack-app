@@ -1,10 +1,5 @@
 <template id="house-form">
-<div class="form-container">
-  <section class="form">
-    <div class="form-title">
-      <h1>New House</h1>
-      <p> Add a new house </p>
-    </div>
+
     <form @submit.prevent="handleSubmit">
       <label>
         Address
@@ -47,11 +42,13 @@
         <button type="submit">Add</button>
       </label>
     </form>
-  </section>
-  </div>
+
 </template>
 
 <script>
+
+import shortid from 'shortid';
+
 const initHouse = () => {
   return {
     address: '',
@@ -59,7 +56,8 @@ const initHouse = () => {
     sale_date: '',
     square_feet: '',
     year_built: '',
-    owner: ''
+    owner: '',
+    property_id: shortid.generate()
   };
 };
 export default {
@@ -87,28 +85,19 @@ export default {
 </script>
 
 <style scoped>
-/* .add-house {
-  width: 300px;
-  text-align: left;
-  margin: auto;
+form {
+  background: white;
+  padding: 30px;
+  box-shadow: -4px 2px 20px -6px rgba(0,0,0,0.75);
 }
-label {
-  display: block;
-} */
-
-/* button {
-  background-color:black;
-  width: 100%;
-  padding: 20px;
-  color: white;
-  font-size: 18px;
-  border-bottom: solid 5px #27b0e4;
-  border-radius: 100px;
-} */
+p {
+  text-align: center;
+  text-transform: uppercase;
+}
 button {
-    background: silver;
+    background: #fa504d;
     border: none;
-    color: black;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 20px;
@@ -119,36 +108,5 @@ button {
 button:hover {
     transform: scale(1.1); 
 }
-.form {
-  background-color: white;
-  max-width: 400px;
-  height: 700px;
-  padding: 20px;
-  position: sticky;
-  top: 50px;
-   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-.form:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.form-title {
-  padding: 15px;
-  text-align: center;
-}
 
-.form-container {
-  display: flex; 
-  justify-content: center;
-  background-image: url("/portland_bg.jpeg");
-  background-position: fixed;
-  background-size: cover; 
-
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
 </style>

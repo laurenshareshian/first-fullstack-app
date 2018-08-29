@@ -1,16 +1,20 @@
 <template>
-  <div id="app" class="flex-container">
+  <div class="app">
     <header>
-      <img src="./assets/logo.png">
       <nav>
         <router-link to="/">Home</router-link>
         <router-link to="/houses">Houses</router-link>
       </nav>
     </header>
 
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view></router-view>
+
+    <footer> 
+      <img class="heart-image" :src="('/made-with-love.png')" />
+      <p> Made @ alchemy code lab PDX</p>
+      <p> Powered by portlandmaps.com</p>
+    </footer>
+    
   </div>
 </template>
 
@@ -19,31 +23,10 @@ export default {
 };
 </script>
 
-<style>
-/* #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+<style scoped>
+
+footer p {
+  text-align: center !important;
 }
-header {
-  height: 75px;
-  background: lightsteelblue;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-header img {
-  width: 100px;
-}
-nav a {
-  text-decoration: none;
-  color: black;
-  margin: 3px;
-  padding: 3px;
-  border: 1px solid black;
-}
-main {
-  padding: 8px;
-} */
+
 </style>

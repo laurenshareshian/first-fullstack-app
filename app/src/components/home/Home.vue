@@ -1,19 +1,20 @@
 <template>
-<main>
-    <h1>Welcome to Portland Houses!</h1>
-    <button> <router-link to="/houses">Houses</router-link> </button>
+  <main>
+    <div class="welcome">
+
+      <h1>Housing Search</h1>
+      <button> <router-link to="/houses">Houses</router-link> </button>
+    </div>
+
   </main>
 </template>
 
 <script>
 </script>
 
-<style>
-* {
-  /* border: solid red; */
-}
+<style scoped>
 main {
-  background-image: url("/portland_bg.jpeg");
+  background-image: url("/home_bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
