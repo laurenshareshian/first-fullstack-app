@@ -7,6 +7,13 @@
         <p>Owner: {{ house.owner }}</p>
         <p>Year Built: {{ house.year_built }}</p>
         <p>Square Feet: {{ house.square_feet }}</p>
+
+          <button>
+            <router-link :to="`/houses/${house.id}/edit`"> Edit
+            </router-link>
+          </button>
+
+        <button @click="handleDelete">Delete</button>
       </section>
     </div>
 
@@ -22,7 +29,6 @@ export default {
       house: null
     };
   },
-  
   created() {
     api.getHouseById(this.$route.params.id)
       .then(house => {
@@ -32,6 +38,12 @@ export default {
   components: {
     Loader
   },
+  methods: {
+    handleDelete() {
+      api.deleteHouse(this.$route.params.id);
+      this.$router.push('/houses');
+    }
+  }
 };
 
 </script>
@@ -45,4 +57,35 @@ section {
   margin-bottom: 200px;
 }
 h2 {text-align: center}
+
+button {
+    background: #fa504d;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    box-shadow: -4px 2px 20px -6px rgba(0,0,0,0.75);
+    transition: all .2s ease-in-out;
+    width: 15%;
+    align-self: center;
+}
+button:hover {
+    transform: scale(1.1); 
+}
+section{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+a {
+    font-family: 'Open Sans';
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+  }
 </style>
