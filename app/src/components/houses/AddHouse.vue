@@ -19,11 +19,16 @@
           v-model="house.sale_date">
       </label>
 
-
       <label>
         Square Feet:
         <input type="text" name="square-feet" placeholder="Square Feet" required
           v-model="house.square_feet">
+      </label>
+
+      <label>
+        Market value:
+        <input type="text" name="market-value" placeholder="Market value"
+          v-model="market_value">
       </label>
 
       <label>
@@ -55,6 +60,7 @@ const initHouse = () => {
     sale_price: '',
     sale_date: '',
     square_feet: '',
+    market_value: '',
     year_built: '',
     owner: '',
     property_id: shortid.generate()

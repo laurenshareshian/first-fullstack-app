@@ -4,6 +4,7 @@
         <h2>{{ house.address }}</h2>
         <p>Sale Price: {{ house.sale_price }}</p>
         <p>Sale Date: {{ house.sale_date }}</p>
+        <p> Market Value: {{house.market_value}}</p>
         <p>Owner: {{ house.owner }}</p>
         <p>Year Built: {{ house.year_built }}</p>
         <p>Square Feet: {{ house.square_feet }}</p>

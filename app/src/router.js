@@ -9,8 +9,8 @@ export default new VueRouter({
   routes: [
     { path: '/', component: Home },
     { path: '/houses', component: Houses },
-    { path: '*', redirect: '/' },
     { path: '/houses/:id', component: HouseDetail },
-    { path: '/houses/:id/edit', component: EditHouse }
+    { path: '/houses/:id/edit', component: EditHouse },
+    { path: '*', redirect: '/' }
   ]
 });

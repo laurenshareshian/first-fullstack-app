@@ -54,4 +54,15 @@ button:hover {
     transform: scale(1.1); 
 }
 
+a {
+    font-family: 'Open Sans';
+    text-decoration: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 40px;
+    padding:5px;
+    color: white;
+  }
+  
 </style>

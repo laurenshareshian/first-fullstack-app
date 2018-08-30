@@ -2,6 +2,7 @@
   <li>
     <router-link :to="`/houses/${house.id}`">
     <div class="title-bg">
+      {{house}}
       <h3>{{shortenedAddress}}</h3>
       <p> {{price}} </p>
     </div>

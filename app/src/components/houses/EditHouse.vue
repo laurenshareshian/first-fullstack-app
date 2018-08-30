@@ -27,6 +27,12 @@
       </label>
 
       <label>
+        Market value:
+        <input type="text" name="market-value" placeholder="Market value"
+          v-model="market_value">
+      </label>
+
+      <label>
         Year Built:
         <input type="text" name="year-built" placeholder="Year Built"
           v-model="year_built">
@@ -55,12 +61,14 @@ export default {
       sale_price: '',
       sale_date: '',
       square_feet: '',
+      market_value: '',
       year_built: '',
       owner: '',
       id: '',
       property_id: ''
     };
   },
+
   created() {
     api.getHouseById(this.$route.params.id)
       .then(house => {
@@ -69,6 +77,7 @@ export default {
         this.sale_price = this.house.sale_price;
         this.sale_date = this.house.sale_date;
         this.square_feet = this.house.square_feet;
+        this.market_value = this.house.market_value;
         this.year_built = this.house.year_built;
         this.owner = this.house.owner;
         this.property_id = this.house.property_id;
@@ -83,6 +92,7 @@ export default {
         sale_price: this.sale_price,
         sale_date: this.sale_date,
         square_feet: this.square_feet,
+        market_value: this.market_value,
         year_built: this.year_built,
         owner: this.owner,
         property_id: this.property_id

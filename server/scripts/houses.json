@@ -7,17 +7,19 @@
         "market_value":30400,
         "sale_date":"2018-08-07",
         "sale_price":25000,
-        "year_built":1975
+        "year_built":1975,
+        "quadrant": "N"
     },
     {
-        "address":"12411 N WEST SHORE DR", 
+        "address":"1400 SE Belmont", 
         "property_id":"M355761", 
         "owner":"BLADO,MIRIAM F", 
         "square_feet":980,
         "market_value":20530,
         "sale_date":"2018-08-11",
         "sale_price":57000,
-        "year_built":1975
+        "year_built":1975,
+        "quadrant": "SE"
     },
     {
         "address":"1245 NE 153RD AVE", 
@@ -27,7 +29,8 @@
         "market_value":466090,
         "sale_date":"2018-08-01",
         "sale_price":620000,
-        "year_built":1963
+        "year_built":1963,
+        "quadrant": "NE"
     },
     {
         "address":"12619 SE FOSTER RD",
@@ -37,6 +40,18 @@
         "market_value":244180,
         "sale_date":"2018-08-01",
         "sale_price":263000,
-        "year_built":2006
+        "year_built":2006,
+        "quadrant": "NE"
+    },
+    {
+        "address":"2851 SW Montgomery Dr",
+        "property_id":"R173572", 
+        "owner":"SHARESHIAN,LAUREN", 
+        "square_feet":1369,
+        "market_value":499370,
+        "sale_date":"2017-10-12",
+        "sale_price":590000,
+        "year_built":1923,
+        "quadrant": "NE"
     }
 ]
