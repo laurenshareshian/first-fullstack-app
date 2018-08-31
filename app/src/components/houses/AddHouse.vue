@@ -7,6 +7,26 @@
           v-model="house.address">
       </label>
 
+      <!-- <label>
+        Quadrant
+        <input type="text" name="quadrant" placeholder="Quadrant" required
+          v-model="house.quadrantId">
+      </label> -->
+
+      <label>
+        Quadrant:<br>
+        <select v-model.number="house.quadrantId" required>
+          <option disabled value="">Please select a quadrant</option>
+          <option
+            v-for="quadrant in quadrants"
+            :key="quadrant.id"
+            :value="quadrant.id">
+            {{quadrant.name}} ({{quadrant.direction}})
+          </option>
+        </select>
+        <br>
+      </label>
+
       <label>
         Sale Price:
         <input type="text" name="sale-price" placeholder="Sale Price" required
@@ -28,7 +48,7 @@
       <label>
         Market value:
         <input type="text" name="market-value" placeholder="Market value"
-          v-model="market_value">
+          v-model="house.market_value">
       </label>
 
       <label>
@@ -53,10 +73,12 @@
 <script>
 
 import shortid from 'shortid';
+import api from '../../services/api';
 
 const initHouse = () => {
   return {
     address: '',
+    quadrantId: '',
     sale_price: '',
     sale_date: '',
     square_feet: '',
@@ -67,21 +89,29 @@ const initHouse = () => {
   };
 };
 export default {
+
   props: {
     onAdd: {
       type: Function,
-      required: true
     }
   },
   data() {
     return {
-      house: initHouse()
+      house: initHouse(),      
+      quadrants: null
+
     };
+  },
+  created() {
+    api.getQuadrants()
+      .then(quadrants => {
+        this.quadrants = quadrants;
+      });
   },
   methods: {
     handleSubmit() {
       this.onAdd(this.house)
-        // this fires when save is complete and data added to nieghborhoods array
+        // this fires when save is complete and data added to houses array
         .then(() => {
           this.house = initHouse();
         });

@@ -21,6 +21,7 @@
 import House from './House';
 import AddHouse from './AddHouse.vue';
 import api from '../../services/api';
+
 export default {
   data() {
     return { 
