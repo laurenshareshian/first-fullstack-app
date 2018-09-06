@@ -1,9 +1,9 @@
 <template>
   <li>
-    <router-link :to="`/houses/${house.id}`">
+    <router-link :to="`/houses/${house.property_id}`">
     <div class="title-bg">
       <h3>{{shortenedAddress}}</h3>
-      <p> {{house.sale_price}}</p>
+      <p> {{price}} </p>
     </div>
     </router-link>
   </li>
